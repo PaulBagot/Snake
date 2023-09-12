@@ -56,6 +56,8 @@ let snakeGame = () => {
     if(!play) return;
     nextMoveSnake();
     drawSnake();
+    if(eatApple())
+        updateApple();
     drawApple();
 }
 
@@ -70,6 +72,17 @@ let eatApple = () => {
     let y = Number.parseInt(args[1]);
     return apple[0] == x && apple[1] == y;
 }
+/**
+ * will create a copy of the current snake
+ * @returns the snake's copy
+ */
+let createSnakeCopy = () => {
+    let snakeCopy = new Array();
+    for(let i = 0; i < snake.length; i++) {
+        snakeCopy[i] = snake[i];
+    }
+    return snakeCopy;
+}
 
 /**
  * change the position of the snake
@@ -79,7 +92,14 @@ let nextMoveSnake = () => {
     let args = snake[0].split(' ');
     let x = Number.parseInt(args[0]) + direction[1];
     let y = Number.parseInt(args[1]) + direction[0];
+    let snakeCopy = createSnakeCopy();
     snake[0] = x + ' ' + y;
+    let max = snake.length;
+    if(eatApple())
+        max++;
+    for(let i = 1; i < max; i++) {
+        snake[i] = snakeCopy[i-1];
+    }
 }
 
 /**
@@ -136,6 +156,7 @@ let updateApple = () => {
  */
 let checkSnake = (line, column) => {
     for(let i = 0; i < snake.length; i++) {
+        console.log(snake[i])
         let args = snake[i].split(' ');
         if(args[0] == line.toString() && args[1] == column.toString()) {
             if(i == 0)
@@ -159,4 +180,4 @@ let drawSnake = () => {
     }
 }
 
-setInterval(snakeGame, 1000);
+setInterval(snakeGame, 300);
