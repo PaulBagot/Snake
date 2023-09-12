@@ -4,14 +4,30 @@ let playButton = document.getElementById('play_button');
 let gridHTML = document.getElementById('grid_body');
 let play = false;
 
-let snake = [[6, 6]];
+let snake = new Array();
+snake[0] = '6 6';
+
 let apple = [0,0];
 let direction = [0,0];
 
 document.addEventListener('keypress', (event) => {
     changeDirection(event.key);
-    console.log(direction[0] + ' ' + direction[1])
-})
+});
+
+playButton.addEventListener('click', () => {
+    onClickPlay();
+});
+
+/**
+ * call the initilize function 
+ * and makes invisible the play button
+ */
+let onClickPlay = () => {
+    initgame();
+    play = true;
+    playButton.style.display = 'none';
+}
+
 /**
  * initialise the game:
  * create the grid with different colors
@@ -38,6 +54,20 @@ let initgame = () => {
  */
 let snakeGame = () => {
     if(!play) return;
+    nextMoveSnake();
+    drawSnake();
+    drawApple();
+}
+
+/**
+ * change the position of the snake
+ * depends the direction
+ */
+let nextMoveSnake = () => {
+    let args = snake[0].split(' ');
+    let x = Number.parseInt(args[0]) + direction[1];
+    let y = Number.parseInt(args[1]) + direction[0];
+    snake[0] = x + ' ' + y;
 }
 
 /**
@@ -82,9 +112,6 @@ let updateApple = () => {
         apple[1] = getRandomInt();
     } while(checkSnake(apple[0], apple[1]) != 'white');
 }
-playButton.addEventListener('click', () => {
-    onClickPlay();
-});
 
 /**
  * the function will say if the square is part of the snake
@@ -97,7 +124,8 @@ playButton.addEventListener('click', () => {
  */
 let checkSnake = (line, column) => {
     for(let i = 0; i < snake.length; i++) {
-        if(snake[i][0] == line && snake[i][1] == column) {
+        let args = snake[i].split(' ');
+        if(args[0] == line.toString() && args[1] == column.toString()) {
             if(i == 0)
                 return '#800080';
             return 'green';
@@ -117,16 +145,6 @@ let drawSnake = () => {
             square.style.backgroundColor = checkSnake(i,j);
         }
     }
-}
-
-/**
- * call the initilize function 
- * and makes invisible the play button
- */
-let onClickPlay = () => {
-    initgame();
-    play = true;
-    playButton.style.display = 'none';
 }
 
 setInterval(snakeGame, 1000);
