@@ -54,11 +54,39 @@ let initgame = () => {
  */
 let snakeGame = () => {
     if(!play) return;
-    nextMoveSnake();
-    drawSnake();
-    if(eatApple())
-        updateApple();
-    drawApple();
+    if(!gameOver()) {
+        nextMoveSnake();
+        drawSnake();
+        if(eatApple())
+            updateApple();
+        drawApple();
+    }
+}
+
+/**
+ * will say if the game is over or not
+ * @returns true if the game is over
+ */
+let gameOver = () => {
+    if(!checkInGrid(snake[0].split(' '))) return true;
+    for(let i = 0; i < snake.length - 1; i++) {
+        for(let j = i + 1; j < snake.length; j++) {
+            if(!checkInGrid(snake[j].split(' '))) return true;
+            if(snake[i] == snake[j]) return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * will say if the snake is in the grid
+ * @param {the x and y coordinates} args 
+ * @returns true if the snake is in the grid
+ */
+let checkInGrid = (args) => {
+    let x = Number.parseInt(args[0]);
+    let y = Number.parseInt(args[1]);
+    return !(x < 0 || x > dimension - 1 || y < 0 || y > dimension - 1);
 }
 
 /**
@@ -95,11 +123,9 @@ let nextMoveSnake = () => {
     let snakeCopy = createSnakeCopy();
     snake[0] = x + ' ' + y;
     let max = snake.length;
-    if(eatApple())
-        max++;
-    for(let i = 1; i < max; i++) {
+    if(eatApple()) max++;
+    for(let i = 1; i < max; i++)
         snake[i] = snakeCopy[i-1];
-    }
 }
 
 /**
@@ -156,7 +182,6 @@ let updateApple = () => {
  */
 let checkSnake = (line, column) => {
     for(let i = 0; i < snake.length; i++) {
-        console.log(snake[i])
         let args = snake[i].split(' ');
         if(args[0] == line.toString() && args[1] == column.toString()) {
             if(i == 0)
