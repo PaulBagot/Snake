@@ -5,10 +5,27 @@ let gridHTML = document.getElementById('grid_body');
 let play = false;
 
 let snake = [[6, 6]];
+let apple = [0,0];
 
-playButton.addEventListener('click', () => {
-    onClickPlay();
-});
+/**
+ * initialise the game:
+ * create the grid with different colors
+ * depends if it is part of the snake, apple or nothing
+ */
+let initgame = () => {
+    let gridString ='';
+    for(let i = 0; i < dimension; i++) {
+        gridString += '<tr>';
+        for(let j = 0; j < dimension; j++) {
+            gridString += `<td id='case_${i}-${j}'></td>`;
+        }
+        gridString += '</tr>';
+    }
+    gridHTML.innerHTML += gridString;
+    drawSnake();
+    updateApple();
+    drawApple();
+}
 
 /**
  * the main function where the game work
@@ -17,7 +34,36 @@ playButton.addEventListener('click', () => {
 let snakeGame = () => {
     if(!play) return;
 }
-  
+
+/**
+ * the random picker will give a number
+ * between 0 (included) and the dimension length (excluded)
+ * @returns a random number between dimensions of the snake game
+ */
+let getRandomInt = () => Math.floor(Math.random() * dimension);  
+
+/**
+ * will draw the apple after
+ * the snake in the html page
+ */
+let drawApple = () => {
+    let square = document.getElementById(`case_${apple[0]}-${apple[1]}`);
+    square.style.backgroundColor = 'red';
+}
+
+/**
+ * will update the apple position
+ * if it get eat by the snake
+ */
+let updateApple = () => {
+    do {
+        apple[0] = getRandomInt();
+        apple[1] = getRandomInt();
+    } while(checkSnake(apple[0], apple[1]) != 'white');
+}
+playButton.addEventListener('click', () => {
+    onClickPlay();
+});
 
 /**
  * the function will say if the square is part of the snake
@@ -50,24 +96,6 @@ let drawSnake = () => {
             square.style.backgroundColor = checkSnake(i,j);
         }
     }
-}
-
-/**
- * initialise the game:
- * create the grid with different colors
- * depends if it is part of the snake, apple or nothing
- */
-let initgame = () => {
-    let gridString ='';
-    for(let i = 0; i < dimension; i++) {
-        gridString += '<tr>';
-        for(let j = 0; j < dimension; j++) {
-            gridString += `<td id='case_${i}-${j}'></td>`;
-        }
-        gridString += '</tr>';
-    }
-    gridHTML.innerHTML += gridString;
-    drawSnake();
 }
 
 /**
