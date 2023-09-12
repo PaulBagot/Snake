@@ -60,6 +60,18 @@ let snakeGame = () => {
 }
 
 /**
+ * will say if the head of the snake
+ * is on the apple square
+ * @returns true if the head ate the apple
+ */
+let eatApple = () => {
+    let args = snake[0].split(' ');
+    let x = Number.parseInt(args[0]);
+    let y = Number.parseInt(args[1]);
+    return apple[0] == x && apple[1] == y;
+}
+
+/**
  * change the position of the snake
  * depends the direction
  */
