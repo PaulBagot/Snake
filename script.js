@@ -6,7 +6,12 @@ let play = false;
 
 let snake = [[6, 6]];
 let apple = [0,0];
+let direction = [0,0];
 
+document.addEventListener('keypress', (event) => {
+    changeDirection(event.key);
+    console.log(direction[0] + ' ' + direction[1])
+})
 /**
  * initialise the game:
  * create the grid with different colors
@@ -33,6 +38,22 @@ let initgame = () => {
  */
 let snakeGame = () => {
     if(!play) return;
+}
+
+/**
+ * will change the direction of the snake
+ * depends the key pressed
+ * @param {the key pressed} key 
+ * @returns 
+ */
+let changeDirection = (key) => {
+    switch(key) {
+        case 'z' : direction[0] = 0; direction[1] = -1; break;
+        case 'q' : direction[0] = -1; direction[1] = 0; break;
+        case 's' : direction[0] = 0; direction[1] = 1; break;
+        case 'd' : direction[0] = 1; direction[1] = 0; break;
+        default : return;
+    }
 }
 
 /**
