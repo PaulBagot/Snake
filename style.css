@@ -17,9 +17,13 @@ h1{
     margin: 0px auto;
     text-align: center;
 }
-#play_button {
+.button {
     width: 0%;
     border: none;
     background: none;
     text-decoration: none;
+}
+
+#reload_button {
+    display: none;
 }

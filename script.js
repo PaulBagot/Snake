@@ -1,6 +1,7 @@
 const dimension = 12;
 
 let playButton = document.getElementById('play_button');
+let reloadButton = document.getElementById('reload_button');
 let gridHTML = document.getElementById('grid_body');
 let play = false;
 
@@ -17,6 +18,10 @@ document.addEventListener('keypress', (event) => {
 playButton.addEventListener('click', () => {
     onClickPlay();
 });
+
+reloadButton.addEventListener('click', () => {
+    location.reload();
+})
 
 /**
  * call the initilize function 
@@ -60,6 +65,9 @@ let snakeGame = () => {
         if(eatApple())
             updateApple();
         drawApple();
+    } else {
+        gridHTML.style.display = 'none';
+        reloadButton.style.display = 'inline-block';
     }
 }
 
