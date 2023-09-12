@@ -10,7 +10,9 @@ h1{
 #grid_body > tr > td {
     padding: 15px;
     border: 1px black solid;
+    background-color: white;
 }
+
 #contener {
     margin: 0px auto;
     text-align: center;
