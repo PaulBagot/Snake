@@ -40,6 +40,19 @@ let checkSnake = (line, column) => {
 }
 
 /**
+ * will draw the snake
+ * in the html page
+ */
+let drawSnake = () => {
+    for(let i = 0; i < dimension; i++) {
+        for(let j = 0; j < dimension; j++) {
+            let square = document.getElementById(`case_${i}-${j}`);
+            square.style.backgroundColor = checkSnake(i,j);
+        }
+    }
+}
+
+/**
  * initialise the game:
  * create the grid with different colors
  * depends if it is part of the snake, apple or nothing
@@ -54,6 +67,7 @@ let initgame = () => {
         gridString += '</tr>';
     }
     gridHTML.innerHTML += gridString;
+    drawSnake();
 }
 
 /**
