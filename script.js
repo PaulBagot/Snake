@@ -1,4 +1,5 @@
-const dimension = 12;
+const dimension = 13;
+const speedRate = 300;
 
 let playButton = document.getElementById('play_button');
 let reloadButton = document.getElementById('reload_button');
@@ -6,11 +7,11 @@ let gridHTML = document.getElementById('grid_body');
 let play = false;
 
 let snake = new Array();
-snake[0] = '6 6';
-snake[1] = '6 5';
-snake[2] = '6 4';
+snake[0] = '6 4';
+snake[1] = '6 3';
+snake[2] = '6 2';
 
-let apple = [0,0];
+let apple = [6, 10];
 let direction = [0,0];
 
 /**
@@ -60,7 +61,6 @@ let initgame = () => {
     }
     gridHTML.innerHTML += gridString;
     drawSnake();
-    updateApple();
     drawApple();
 }
 
@@ -70,13 +70,15 @@ let initgame = () => {
  */
 let snakeGame = () => {
     if(!play) return;
-    if(!gameOver()) {
+    if(gameOver() == 0) {
         if(direction[0] == 0 && direction[1] == 0) return;
         nextMoveSnake();
         drawSnake();
-        if(eatApple())
-            updateApple();
-        drawApple();
+        if(snake.length != dimension * dimension) {
+            if(eatApple())
+                updateApple();
+            drawApple();
+        }
     } else {
         gridHTML.style.display = 'none';
         reloadButton.style.display = 'inline-block';
@@ -85,18 +87,21 @@ let snakeGame = () => {
 
 /**
  * will say if the game is over or not
- * @returns true if the game is over
+ * @returns 
+ *      - 0 if the game is not over
+ *      - 1 if the player win
+ *      - -1 if the player loose
  */
 let gameOver = () => {
+    if(snake.length == dimension * dimension) return 1;
     changeXY(snake[0].split(' '));
-    if(!checkInGrid()) return true;
+    if(!checkInGrid()) return -1;
     for(let i = 0; i < snake.length - 1; i++) {
         for(let j = i + 1; j < snake.length; j++) {
-            if(!checkInGrid(snake[j].split(' '))) return true;
-            if(snake[i] == snake[j]) return true;
+            if(snake[i] == snake[j]) return -1;
         }
     }
-    return false;
+    return 0;
 }
 
 /**
@@ -181,9 +186,10 @@ let allowDirection = (dirY, dirX) => {
     changeXY(snake[0].split(' '));
     x += dirX;
     y += dirY;
-    console.log(dirX + ' ' + dirY);
-    if(snake[1] != x + ' ' + y)
-        direction[0] = dirY; direction[1] = dirX;
+    if(snake[1] != x.toString() + ' ' + y.toString()) {
+        direction[0] = dirY;
+        direction[1] = dirX;
+    }
 }
 
 /**
@@ -247,4 +253,4 @@ let drawSnake = () => {
     }
 }
 
-setInterval(snakeGame, 300);
+setInterval(snakeGame, speedRate);
