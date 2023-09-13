@@ -7,9 +7,20 @@ let play = false;
 
 let snake = new Array();
 snake[0] = '6 6';
+snake[1] = '6 5';
+snake[2] = '6 4';
 
 let apple = [0,0];
 let direction = [0,0];
+
+/**
+ * two variable necessary for
+ * check the direction, the next move and check collision
+ * they change their values depends what they have to do
+ */
+let x = 0;
+let y = 0;
+
 
 document.addEventListener('keypress', (event) => {
     changeDirection(event.key);
@@ -60,6 +71,7 @@ let initgame = () => {
 let snakeGame = () => {
     if(!play) return;
     if(!gameOver()) {
+        if(direction[0] == 0 && direction[1] == 0) return;
         nextMoveSnake();
         drawSnake();
         if(eatApple())
@@ -76,7 +88,8 @@ let snakeGame = () => {
  * @returns true if the game is over
  */
 let gameOver = () => {
-    if(!checkInGrid(snake[0].split(' '))) return true;
+    changeXY(snake[0].split(' '));
+    if(!checkInGrid()) return true;
     for(let i = 0; i < snake.length - 1; i++) {
         for(let j = i + 1; j < snake.length; j++) {
             if(!checkInGrid(snake[j].split(' '))) return true;
@@ -91,10 +104,18 @@ let gameOver = () => {
  * @param {the x and y coordinates} args 
  * @returns true if the snake is in the grid
  */
-let checkInGrid = (args) => {
-    let x = Number.parseInt(args[0]);
-    let y = Number.parseInt(args[1]);
+let checkInGrid = () => {
     return !(x < 0 || x > dimension - 1 || y < 0 || y > dimension - 1);
+}
+
+/**
+ * will change the x and y variables
+ * depends what they have to do
+ * @param {args[0] : x | args[1] : y} args 
+ */
+let changeXY = (args) => {
+    x = Number.parseInt(args[0]);
+    y = Number.parseInt(args[1]);
 }
 
 /**
@@ -103,9 +124,7 @@ let checkInGrid = (args) => {
  * @returns true if the head ate the apple
  */
 let eatApple = () => {
-    let args = snake[0].split(' ');
-    let x = Number.parseInt(args[0]);
-    let y = Number.parseInt(args[1]);
+    changeXY(snake[0].split(' '));
     return apple[0] == x && apple[1] == y;
 }
 /**
@@ -125,12 +144,12 @@ let createSnakeCopy = () => {
  * depends the direction
  */
 let nextMoveSnake = () => {
-    let args = snake[0].split(' ');
-    let x = Number.parseInt(args[0]) + direction[1];
-    let y = Number.parseInt(args[1]) + direction[0];
+    changeXY(snake[0].split(' '));
+    x += direction[1];
+    y += direction[0];
+    let max = snake.length;
     let snakeCopy = createSnakeCopy();
     snake[0] = x + ' ' + y;
-    let max = snake.length;
     if(eatApple()) max++;
     for(let i = 1; i < max; i++)
         snake[i] = snakeCopy[i-1];
@@ -144,12 +163,27 @@ let nextMoveSnake = () => {
  */
 let changeDirection = (key) => {
     switch(key) {
-        case 'z' : direction[0] = 0; direction[1] = -1; break;
-        case 'q' : direction[0] = -1; direction[1] = 0; break;
-        case 's' : direction[0] = 0; direction[1] = 1; break;
-        case 'd' : direction[0] = 1; direction[1] = 0; break;
+        case 'z' : allowDirection(0, -1); break;
+        case 'q' : allowDirection(-1, 0); break;
+        case 's' : allowDirection(0, 1); break;
+        case 'd' : allowDirection(1, 0); break;
         default : return;
     }
+}
+
+/**
+ * check if the direction is allow
+ * the head can not go back to the rest of the body
+ * @param {y direction} dirY 
+ * @param {x direction} dirX 
+ */
+let allowDirection = (dirY, dirX) => {
+    changeXY(snake[0].split(' '));
+    x += dirX;
+    y += dirY;
+    console.log(dirX + ' ' + dirY);
+    if(snake[1] != x + ' ' + y)
+        direction[0] = dirY; direction[1] = dirX;
 }
 
 /**
