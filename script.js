@@ -1,9 +1,11 @@
 const dimension = 13;
-const speedRate = 300;
+const speedRate = 150;
 
 let playButton = document.getElementById('play_button');
 let reloadButton = document.getElementById('reload_button');
 let gridHTML = document.getElementById('grid_body');
+let scoreDisplay = document.getElementById('score'); 
+let score = 0;
 let play = false;
 
 let snake = new Array();
@@ -23,7 +25,7 @@ let x = 0;
 let y = 0;
 
 
-document.addEventListener('keypress', (event) => {
+document.addEventListener('keydown', (event) => {
     changeDirection(event.key);
 });
 
@@ -75,8 +77,11 @@ let snakeGame = () => {
         nextMoveSnake();
         drawSnake();
         if(snake.length != dimension * dimension) {
-            if(eatApple())
+            if(eatApple()) {
+                score++;
+                scoreDisplay.textContent = 'score : ' + score;
                 updateApple();
+            }
             drawApple();
         }
     } else {
