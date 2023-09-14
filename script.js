@@ -4,7 +4,8 @@ const speedRate = 150;
 let playButton = document.getElementById('play_button');
 let reloadButton = document.getElementById('reload_button');
 let gridHTML = document.getElementById('grid_body');
-let scoreDisplay = document.getElementById('score'); 
+let scoreDisplay = document.getElementById('score');
+let winDisplay = document.getElementById('win');
 let score = 0;
 let play = false;
 
@@ -84,11 +85,21 @@ let snakeGame = () => {
             }
             drawApple();
         }
-    } else {
-        gridHTML.style.display = 'none';
-        reloadButton.style.display = 'inline-block';
-    }
+    } else
+        endGameDisplay();
 }
+
+let endGameDisplay = () => {
+    gridHTML.style.display = 'none';
+    reloadButton.style.display = 'inline-block';
+    let win = gameOver();
+    winDisplay.style.display = 'block';
+    if(win == 1)
+        winDisplay.textContent = 'You Win GG';
+    else
+        winDisplay.textContent = 'You Loose';
+}
+
 
 /**
  * will say if the game is over or not
