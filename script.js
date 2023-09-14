@@ -89,11 +89,15 @@ let snakeGame = () => {
         endGameDisplay();
 }
 
+/**
+ * will display a title that say if
+ * the player win or loose
+ */
 let endGameDisplay = () => {
     gridHTML.style.display = 'none';
     reloadButton.style.display = 'inline-block';
     let win = gameOver();
-    winDisplay.style.display = 'block';
+    winDisplay.style.display = 'inline-block';
     if(win == 1)
         winDisplay.textContent = 'You Win GG';
     else
