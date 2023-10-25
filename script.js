@@ -1,5 +1,5 @@
 const dimension = 13;
-const speedRate = 150;
+const speedRate = 175;
 
 let playButton = document.getElementById('play_button');
 let reloadButton = document.getElementById('reload_button');
@@ -8,6 +8,7 @@ let scoreDisplay = document.getElementById('score');
 let winDisplay = document.getElementById('win');
 let score = 0;
 let play = false;
+let backgroundColor = '#261c6d';
 
 let snake = new Array();
 snake[0] = '6 4';
@@ -73,6 +74,7 @@ let initgame = () => {
  */
 let snakeGame = () => {
     if(!play) return;
+    document.getElementById('contener-buttons').style.display = 'none';
     if(gameOver() == 0) {
         if(direction[0] == 0 && direction[1] == 0) return;
         nextMoveSnake();
@@ -85,8 +87,10 @@ let snakeGame = () => {
             }
             drawApple();
         }
-    } else
+    } else {
+        document.getElementById('contener-buttons').style.display = 'block';
         endGameDisplay();
+    }
 }
 
 /**
@@ -99,9 +103,9 @@ let endGameDisplay = () => {
     let win = gameOver();
     winDisplay.style.display = 'inline-block';
     if(win == 1)
-        winDisplay.textContent = 'You Win GG';
+        winDisplay.textContent = 'Yon won';
     else
-        winDisplay.textContent = 'You Loose';
+        winDisplay.textContent = 'Game Over';
 }
 
 
@@ -235,7 +239,7 @@ let updateApple = () => {
     do {
         apple[0] = getRandomInt();
         apple[1] = getRandomInt();
-    } while(checkSnake(apple[0], apple[1]) != 'white');
+    } while(checkSnake(apple[0], apple[1]) != backgroundColor);
 }
 
 /**
@@ -256,7 +260,7 @@ let checkSnake = (line, column) => {
             return 'green';
         }
     }
-    return 'white';
+    return backgroundColor;
 }
 
 /**
