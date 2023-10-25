@@ -69,7 +69,7 @@ let initgame = () => {
 
 /**
  * the main function where the game work
- * @returns 
+ * @returns {null}
  */
 let snakeGame = () => {
     if(!play) return;
@@ -107,7 +107,7 @@ let endGameDisplay = () => {
 
 /**
  * will say if the game is over or not
- * @returns 
+ * @returns {number}
  *      - 0 if the game is not over
  *      - 1 if the player win
  *      - -1 if the player loose
@@ -126,8 +126,7 @@ let gameOver = () => {
 
 /**
  * will say if the snake is in the grid
- * @param {the x and y coordinates} args 
- * @returns true if the snake is in the grid
+ * @returns {boolean} true if the snake is in the grid
  */
 let checkInGrid = () => {
     return !(x < 0 || x > dimension - 1 || y < 0 || y > dimension - 1);
@@ -136,7 +135,7 @@ let checkInGrid = () => {
 /**
  * will change the x and y variables
  * depends what they have to do
- * @param {args[0] : x | args[1] : y} args 
+ * @param {string[]} args -> args[0] : x | args[1] : y
  */
 let changeXY = (args) => {
     x = Number.parseInt(args[0]);
@@ -146,7 +145,7 @@ let changeXY = (args) => {
 /**
  * will say if the head of the snake
  * is on the apple square
- * @returns true if the head ate the apple
+ * @returns {boolean} true if the head ate the apple
  */
 let eatApple = () => {
     changeXY(snake[0].split(' '));
@@ -154,7 +153,7 @@ let eatApple = () => {
 }
 /**
  * will create a copy of the current snake
- * @returns the snake's copy
+ * @returns {Array} the snake's copy
  */
 let createSnakeCopy = () => {
     let snakeCopy = new Array();
@@ -183,8 +182,8 @@ let nextMoveSnake = () => {
 /**
  * will change the direction of the snake
  * depends the key pressed
- * @param {the key pressed} key 
- * @returns 
+ * @param {string} key the key pressed
+ * @returns {null}
  */
 let changeDirection = (key) => {
     switch(key) {
@@ -199,8 +198,8 @@ let changeDirection = (key) => {
 /**
  * check if the direction is allow
  * the head can not go back to the rest of the body
- * @param {y direction} dirY 
- * @param {x direction} dirX 
+ * @param {number} dirY y direction
+ * @param {number} dirX x direction
  */
 let allowDirection = (dirY, dirX) => {
     changeXY(snake[0].split(' '));
@@ -215,7 +214,7 @@ let allowDirection = (dirY, dirX) => {
 /**
  * the random picker will give a number
  * between 0 (included) and the dimension length (excluded)
- * @returns a random number between dimensions of the snake game
+ * @returns {number} a random number between dimensions of the snake game
  */
 let getRandomInt = () => Math.floor(Math.random() * dimension);  
 
@@ -241,9 +240,9 @@ let updateApple = () => {
 
 /**
  * the function will say if the square is part of the snake
- * @param {square's line} line 
- * @param {square's column} column 
- * @returns 
+ * @param {number} line square's line
+ * @param {number} column square's column
+ * @returns {string}
  *      - green if the square is part of the body
  *      - #800080 if the square is the head of the snake
  *      - white if the square is not part of the body
