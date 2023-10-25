@@ -75,6 +75,12 @@ let initgame = () => {
 let snakeGame = () => {
     if(!play) return;
     document.getElementById('contener-buttons').style.display = 'none';
+    console.log(window.innerWidth);
+    if(window.innerWidth <= 1080) {
+        document.getElementById('contener-mobile-buttons').style.display = 'block';
+    } else {
+        document.getElementById('contener-mobile-buttons').style.display = 'none';
+    }
     if(gameOver() == 0) {
         if(direction[0] == 0 && direction[1] == 0) return;
         nextMoveSnake();

@@ -5,37 +5,80 @@
     <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/76d70cbe65.js" crossorigin="anonymous"></script>
     
-    <title>Snake</title>
+    <title>Snake Game</title>
 </head>
 <body>
     <head>
+
         <h1>Snake Game</h1>
+
     </head>
     <main>
-        <div id="contener-main">
-            <p id="score">score: 0</p>
-            <table id="grid">
-                <tbody id="grid_body">
-                </tbody>
-            </table>
+
+        <p id="score">score: 0</p>
+
+        <table id="grid">
+
+            <tbody id="grid_body">
+            </tbody>
+
+        </table>
             
-            <div id="contener-buttons">
-                <button class='button' id="play_button"><em class="fa-solid fa-play fa-2xl"></em></button>
-                <button class='button' id="reload_button"><em class="fa-solid fa-rotate-right fa-2xl"></em></button>
-            </div>
-            
-            <h2 id="win"></h2>
+        <div id="contener-buttons">
+
+            <button class='buttons' id="play_button">
+                <em class="fa-solid fa-play fa-2xl"></em>
+            </button>
+
+            <button class='buttons' id="reload_button">
+                <em class="fa-solid fa-rotate-right fa-2xl"></em>
+            </button>
+
         </div>
+            
+        <h2 id="win"></h2>
+        
+
+        <div id="contener-mobile-buttons">
+            <div>
+
+                <button class='mobile-buttons' id="arrow-up">
+                    <em class="fa-solid fa-arrow-up fa-2xl"></em>
+                </button>
+
+            </div>
+            <span>
+
+                <button class='mobile-buttons' id="arrow-left">
+                    <em class="fa-solid fa-arrow-left fa-2xl"></em>
+                </button>
+
+                <button class='mobile-buttons' id="arrow-down">
+                    <em class="fa-solid fa-arrow-down fa-2xl"></em>
+                </button>
+
+                <button class='mobile-buttons' id="arrow-right">
+                    <em class="fa-solid fa-arrow-right fa-2xl"></em>
+                </button>
+
+            </span>
+        </div>
+
     </main>
 
     <footer>
+
         <div id="contener-footer">
+
             <ul>
                 <li><p>Paul Bagot</p></li>
                 <li><a href="https://github.com/PaulBagot">Github</a></li>
             </ul>
+
         </div>
+
     </footer>
+
     <script src="./script.js"></script>
 </body>
 </html>
