@@ -5,7 +5,8 @@
     padding: 0;
 }
 
-body {
+html, body {
+    height: 92%;
     background-color: #20534D;
     font-family: 'Press Start 2P';
     color: #00fad9;
@@ -16,17 +17,23 @@ h1{
     text-align: center;
 }
 
+#score {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
 #grid {
     margin: 15px auto;
     border-collapse: collapse;
 }
 
 #grid_body > tr > td {
-    padding: 15px;
     border: 1px #261c6d solid;
 }
 
 main {
+    min-height:100%;
+    margin-bottom: -100px;
     margin: 25px auto;
     text-align: center;
 }
@@ -66,19 +73,28 @@ main {
     display: none;
 }
 
+main:after  {
+    content: "";
+    display: block;
+}
+
+footer, main:after {
+    height: 100px;
+}
+
 footer {
     width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     color: #00BFA5;
     background-color: rgb(44, 44, 44);
 }
 
 #contener-footer {
-    margin: 25px auto;
     text-align: center;
-    line-height: 25px;
+    line-height: 45px;
+}
+
+#contener-footer > ul {
+    margin-top: 25px;
 }
 
 #contener-footer > ul > li  {
@@ -116,63 +132,39 @@ footer {
     color: #20534D;
 }
 
+@media only screen and (min-width: 1080px) {
+    
+    #grid_body > tr > td {
+        padding: 24px;
+    }
+
+    .mobile-buttons {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 1080px) {
 
-    body {
-        background-color: red;
-    }
-
     #grid_body > tr > td {
-        padding: 12px;
-        border: 1px #261c6d solid;
-    }
-
-    #contener-mobile-buttons {
-        margin: 25px auto;
-    }
-
-    #contener-mobile-buttons > div {
-        margin-bottom: 15px;
-    }
-    
-    .mobile-buttons {
-        height: 60px;
-        width: 60px;
-        border: none;
-        border-radius: 5px;
-        background-color: #00BFA5;
-        color: #20534D;
+        padding: 15px;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    body {
-        background-color: blue;
-    }
-
     h1{
-        font-size: 25px;
+        font-size: 15px;
     }
 
-    #grid_body > tr > td {
-        padding: 12px;
-        border: 1px #261c6d solid;
+    #score {
+        margin-top: 10px;
+        font-size: 12px;
     }
 
-    #contener-mobile-buttons {
-        margin: 25px auto;
-    }
-
-    #contener-mobile-buttons > div {
-        margin-bottom: 15px;
+    #win {
+        font-size: 15px;
     }
     
-    .mobile-buttons {
-        height: 60px;
-        width: 60px;
-        border: none;
-        border-radius: 5px;
-        background-color: #00BFA5;
-        color: #20534D;
+    #grid_body > tr > td {
+        padding: 12px;
     }
 }
