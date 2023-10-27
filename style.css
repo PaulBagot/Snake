@@ -6,7 +6,7 @@
 }
 
 html, body {
-    height: 92%;
+    height: 100%;
     background-color: #20534D;
     font-family: 'Press Start 2P';
     color: #00fad9;
@@ -15,6 +15,7 @@ html, body {
 h1{
     margin-top: 25px;
     text-align: center;
+    font-size: 45px;
 }
 
 #score {
@@ -151,9 +152,6 @@ footer {
 }
 
 @media only screen and (max-width: 767px) {
-    h1{
-        font-size: 15px;
-    }
 
     #score {
         margin-top: 10px;
