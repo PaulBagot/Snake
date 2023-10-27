@@ -126,7 +126,7 @@ footer {
 
 /*----MOBILE----*/
 
-@media only screen and (max-width: 1081px) {
+@media only screen and (max-width: 1280px) {
 
     h1 {
         font-size: 80px;
