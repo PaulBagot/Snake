@@ -9,6 +9,7 @@ html, body {
     background-color: #20534D;
     font-family: 'Press Start 2P';
     color: #00fad9;
+    width: 100%;
 }
 
 h1{
@@ -25,10 +26,6 @@ h1{
 #grid {
     margin: 15px auto;
     border-collapse: collapse;
-}
-
-#grid_body > tr > td {
-    border: 1px #261c6d solid;
 }
 
 main {
@@ -111,7 +108,7 @@ footer {
 }
 
 #grid_body > tr > td {
-    padding: 12px;
+    padding: 50px;
     border: 1px #261c6d solid;
 }
 
@@ -124,33 +121,31 @@ footer {
 }
 
 .mobile-buttons {
-    height: 60px;
-    width: 60px;
-    border: none;
-    border-radius: 5px;
-    background-color: #00BFA5;
-    color: #20534D;
+    display: none;
 }
 
-@media only screen and (min-width: 1081px) {
-    
-    #grid_body > tr > td {
-        padding: 24px;
+/*----MOBILE----*/
+
+@media only screen and (max-width: 1081px) {
+
+    h1 {
+        font-size: 80px;
     }
 
+    #contener-mobile-buttons {
+        margin-top: 200px;
+    }
     .mobile-buttons {
-        display: none;
-    }
-}
+        height: 150px;
+        width: 150px;
+        border: none;
+        border-radius: 5px;
+        background-color: #00BFA5;
+        color: #20534D;
+        display: inline;
+    }    
+    
 
-@media only screen and (max-width: 1080px) and (min-width: 768px) {
-
-    #grid_body > tr > td {
-        padding: 15px;
-    }
-}
-
-@media only screen and (max-width: 767px) {
 
     #score {
         margin-top: 10px;
@@ -162,6 +157,6 @@ footer {
     }
     
     #grid_body > tr > td {
-        padding: 12px;
+        padding: 24px;
     }
 }
