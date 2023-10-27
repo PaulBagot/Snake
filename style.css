@@ -2,7 +2,6 @@
 
 * {
     margin: 0;
-    padding: 0;
 }
 
 html, body {
@@ -133,7 +132,7 @@ footer {
     color: #20534D;
 }
 
-@media only screen and (min-width: 1080px) {
+@media only screen and (min-width: 1081px) {
     
     #grid_body > tr > td {
         padding: 24px;
@@ -144,7 +143,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1080px) and (min-width: 768px) {
 
     #grid_body > tr > td {
         padding: 15px;
