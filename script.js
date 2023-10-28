@@ -10,6 +10,11 @@ let score = 0;
 let play = false;
 let backgroundColor = '#261c6d';
 
+let upArrow = document.getElementById('arrow-up');
+let leftArrow = document.getElementById('arrow-left');
+let downArrow = document.getElementById('arrow-down');
+let rightArrow = document.getElementById('arrow-right');
+
 let snake = new Array();
 snake[0] = '6 4';
 snake[1] = '6 3';
@@ -26,6 +31,22 @@ let direction = [0,0];
 let x = 0;
 let y = 0;
 
+upArrow.addEventListener('click', () => {
+    changeDirection('z');
+});
+
+leftArrow.addEventListener('click', () => {
+    changeDirection('q');
+});
+
+downArrow.addEventListener('click', () => {
+    changeDirection('s');
+});
+
+
+rightArrow.addEventListener('click', () => {
+    changeDirection('d');
+});
 
 document.addEventListener('keydown', (event) => {
     changeDirection(event.key);
@@ -37,7 +58,8 @@ playButton.addEventListener('click', () => {
 
 reloadButton.addEventListener('click', () => {
     location.reload();
-})
+});
+
 
 /**
  * call the initilize function 
