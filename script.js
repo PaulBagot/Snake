@@ -3,7 +3,7 @@ const speedRate = 175;
 
 let playButton = document.getElementById('play_button');
 let reloadButton = document.getElementById('reload_button');
-let gridHTML = document.getElementById('grid_body');
+let gridHTML = document.getElementById('grid');
 let scoreDisplay = document.getElementById('score');
 let winDisplay = document.getElementById('win');
 let score = 0;
@@ -15,7 +15,7 @@ snake[0] = '6 4';
 snake[1] = '6 3';
 snake[2] = '6 2';
 
-let apple = [6, 10];
+let apple = [Number.parseInt(dimension / 2), Number.parseInt(dimension / 2)];
 let direction = [0,0];
 
 /**
@@ -55,15 +55,17 @@ let onClickPlay = () => {
  * depends if it is part of the snake, apple or nothing
  */
 let initgame = () => {
-    let gridString ='';
     for(let i = 0; i < dimension; i++) {
-        gridString += '<tr>';
         for(let j = 0; j < dimension; j++) {
-            gridString += `<td id='case_${i}-${j}'></td>`;
+            let item = document.createElement('div');
+            item.className = 'grid__items';
+            item.id = `case_${i}-${j}`;
+            item.style.width = (100/dimension) + '%';
+            item.style.height = (100/dimension) + '%';
+            gridHTML.append(item);
         }
-        gridString += '</tr>';
     }
-    gridHTML.innerHTML += gridString;
+    gridHTML.style.display = 'block';
     drawSnake();
     drawApple();
 }

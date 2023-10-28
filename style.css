@@ -20,12 +20,8 @@ h1{
 
 #score {
     margin-top: 10px;
-    font-size: 12px;
-}
-
-#grid {
-    margin: 15px auto;
-    border-collapse: collapse;
+    margin-bottom: 10px;
+    font-size: 24px;
 }
 
 main {
@@ -75,6 +71,24 @@ main:after  {
     display: block;
 }
 
+#grid {
+    border: 1px solid black;
+    text-align: center;
+    width: 35vw;
+    height: 35vw;
+    margin: auto;
+    display: none;
+}
+
+.grid__items {
+    max-height: 100vw;
+    max-width: 100vw;
+    float: left;
+    padding: 0;
+    margin: auto;
+}
+
+
 footer, main:after {
     height: 100px;
 }
@@ -105,15 +119,7 @@ footer {
 
 #contener-mobile-buttons {
     display: none;
-}
-
-#grid_body > tr > td {
-    padding: 50px;
-    border: 1px #261c6d solid;
-}
-
-#contener-mobile-buttons {
-    margin: 25px auto;
+    margin: 65px auto;
 }
 
 #contener-mobile-buttons > div {
@@ -125,38 +131,28 @@ footer {
 }
 
 /*----MOBILE----*/
-
 @media only screen and (max-width: 1280px) {
 
     h1 {
-        font-size: 80px;
+        font-size: 45px;
     }
 
-    #contener-mobile-buttons {
-        margin-top: 200px;
-    }
     .mobile-buttons {
-        height: 150px;
-        width: 150px;
+        height: 85px;
+        width: 85px;
         border: none;
         border-radius: 5px;
         background-color: #00BFA5;
         color: #20534D;
         display: inline;
-    }    
-    
-
-
-    #score {
-        margin-top: 10px;
-        font-size: 12px;
     }
 
     #win {
         font-size: 15px;
     }
-    
-    #grid_body > tr > td {
-        padding: 24px;
+
+    #grid {
+        width: 80vw;
+        height: 80vw;
     }
 }
